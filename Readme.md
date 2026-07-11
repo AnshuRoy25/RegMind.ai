@@ -32,6 +32,237 @@ RegMind.ai operates through **three primary agentic layers**:
 2. **The Action Generation Layer** — Task creation with scheduling and urgency triage
 3. **The Continuous State Machine & Verification Layer** — Amendment handling and automated evidence validation
 
+```
+                    Closed-Loop Compliance System
+                              ↓
+                    Primary Agentic Layers
+                              ↓
+                    ┌─────────────────────┐
+                    │ Upload SEBI Circular │
+                    └──────────────┬──────┘
+                                   ↓
+                    ┌──────────────────────────┐
+                    │  The Sorting Layer       │
+                    │  (Steps 1-3)             │
+                    │  • Applicability Gate    │
+                    │  • Classification       │
+                    │  • Semantic Filtering   │
+                    └──────────────┬───────────┘
+                                   ↓
+                    ┌──────────────────────────┐
+                    │ Action Generation Layer  │
+                    │  (Step 4)                │
+                    │  • Scheduling Triage     │
+                    │  • Task Creation         │
+                    │  • Evidence Checklists   │
+                    └──────────────┬───────────┘
+                                   ↓
+                    ┌──────────────────────────────────┐
+                    │ Continuous State Machine &       │
+                    │ Verification Layer (Steps 5-7)   │
+                    │  • Amendment Handling            │
+                    │  • Dynamic Routing               │
+                    │  • Automated Verification        │
+                    └──────────────┬───────────────────┘
+                                   ↓
+                    ┌──────────────────────────┐
+                    │ Compliance Dashboard     │
+                    │ Real-Time Updates        │
+                    └──────────────────────────┘
+```
+
+---
+
+## Detailed 7-Step Flow Diagram
+
+```
+STEP 1: UPLOAD & INGESTION
+┌────────────────────────┐
+│  Upload SEBI Circular  │
+└───────────┬────────────┘
+            ↓
+      ┌─────────────┐
+      │  Agent 1    │  → Applicability Gate: Does it apply to you?
+      └─────┬───────┘
+            ├─→ YES: Extract PDF text
+            └─→ NO: Skip
+            ↓
+      ┌─────────────┐
+      │  Agent 2    │  → Document Classification: Master or Amendment?
+      └─────┬───────┘
+            ├─→ Master Circular Flow
+            └─→ Amendment Circular Flow
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 2: MASTER CIRCULAR INGESTION & STRUCTURAL TRIAGE
+┌──────────────────────────┐
+│ Master Circular Track    │
+└───────────┬──────────────┘
+            ↓
+   Parse Entire Document
+   Clause-by-Clause
+            ↓
+   ┌─────────────┐
+   │ Domain LLM  │  → Specialized SEBI Pattern Recognition
+   └──────┬──────┘
+          ↓
+  Create Base Obligation
+  Object (JSON)
+  • obligation_id
+  • section_reference
+  • raw_clause_text
+  • metadata
+          ↓
+   ┌─────────────┐
+   │  Agent 3    │  → Binary Classification: Actionable or Not?
+   └─────┬───────┘
+         ├─→ Actionable Item (Technical/Non-Technical)
+         └─→ Non-Actionable (Prohibitive/Governance/Informational)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 3: SEMANTIC FILTERING & OPERATIONAL ROUTING
+            ↓
+      ACTIONABLE ITEMS         NON-ACTIONABLE ITEMS
+            ↓                           ↓
+   ┌────────────────┐         ┌────────────────────┐
+   │ Technical      │         │ Reference Library  │
+   │ Actions        │         │ (Immutable)        │
+   │ (IT/Systems)   │         ├─ Prohibitive      │
+   │ OR             │         ├─ Governance       │
+   │ Non-Technical  │         └─ Informational    │
+   │ (Business)     │
+   └────────┬───────┘
+            ↓
+   Routes to Developer
+   Pipeline (Step 4)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 4: SCHEDULING TRIAGE & ACTION GENERATION
+┌──────────────────────────────┐
+│ Technical IT Action          │
+│ (From Step 3)                │
+└───────────┬──────────────────┘
+            ↓
+   ┌──────────────────┐
+   │ Scheduling Agent │  → Assign Urgency Tier
+   └─────────┬────────┘
+             ├─→ URGENT (Immediate deadline)
+             ├─→ RECURRING (Weekly/Monthly/Quarterly)
+             └─→ CONDITIONAL (Triggered by events)
+             ↓
+   ┌──────────────────────────┐
+   │ Action Generation Engine │  → Code-Friendly Translation
+   │ (LLM as IT Project Mgr)  │
+   └─────────┬────────────────┘
+             ↓
+    Create Engineering Task
+    • technical_spec_summary
+    • evidence_checklist
+    • measurable criteria
+             ↓
+   ┌─────────────────┐
+   │ Task Ready for  │  → Ready for Developer Assignment
+   │ Developer       │
+   └─────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 5: AMENDMENT INGESTION & INTENT ANALYSIS
+┌──────────────────────────┐
+│ Amendment Circular Track │
+│ (From Step 1)            │
+└───────────┬──────────────┘
+            ↓
+   ┌─────────────┐
+   │ Domain LLM  │  → Parse Amendment Clauses
+   └──────┬──────┘
+          ↓
+   ┌──────────────────────┐
+   │ Structural Variation │  → Evaluate Impact on Baseline
+   │ Gate (Agent)         │
+   └──────────┬───────────┘
+              ├─→ ADDING A NEW CLAUSE
+              │   (Simple additive path)
+              └─→ MODIFYING AN EXISTING CLAUSE
+                  (Complex state-altering path)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 6: AMENDMENT STATE MACHINE & DYNAMIC ROUTING
+┌───────────────────────────────────────────┐
+│ For EACH Modified or New Clause:          │
+│ Check Live Status of Original Task        │
+└─────────────────┬───────────────────────┘
+                  ↓
+        ┌─────────────────────┐
+        │ Action vs Non-Action │
+        │ Check (Agent)        │
+        └────────┬─────────────┘
+                 ↓
+      ACTIVE TECHNICAL TASK
+                 ↓
+    ┌────────────────────────────────┐
+    │ Dynamic Modification State      │
+    │ Machine: Where is the task NOW? │
+    └────────────┬───────────────────┘
+                 │
+    ┌────────────┼────────────┬──────────────┬─────────────┐
+    ↓            ↓            ↓              ↓             ↓
+  OPEN       ONGOING       COMPLETED    REMOVE PREV
+  (Unassigned) (In Progress) (Deployed)   REQUIREMENT
+    │            │            │              │
+    ↓            ↓            ↓              ↓
+OVERWRITE    HALT & ALERT  CREATE DELTA  DEPRECATE
+SPEC        ENGINEER      TASK          TICKET
+    │            │            │              │
+    └────────────┴────────────┴──────────────┘
+                 ↓
+      Task Updated/Routed
+      to Developer
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 7: AUTOMATED EVIDENCE VERIFICATION LOOP
+┌────────────────────────────────┐
+│ IT Department Executes Task    │
+│ & Uploads Evidence             │
+│ (config, code, logs, payloads) │
+└───────────────┬────────────────┘
+                ↓
+        ┌───────────────────┐
+        │ Verification      │
+        │ Agent (AI Auditor)│  → Cross-check Evidence vs Law
+        └────────┬──────────┘
+                 │
+        ┌────────┴────────┐
+        ↓                 ↓
+    CORRECT          INCORRECT
+    (100% match)      (Incomplete/Errors)
+        │                 │
+        ↓                 ↓
+   AUTO-MARK         TRIGGER
+   COMPLETED      INTERACTIVE
+        │         CHATBOT DEBUGGER
+        │              │
+        ↓              ↓
+   DASHBOARD      Engineer Gets
+   UPDATE          Exact Feedback
+   (Real-time)      on What's Missing
+        │              │
+        ↓              ↓
+   ┌──────────────┐  ┌──────────┐
+   │ COMPLIANCE   │  │ Developer│
+   │ VERIFIED     │  │ Fixes    │
+   │ AUDIT TRAIL  │  │ Re-submits
+   │ LOGGED       │  └──────┬───┘
+   └──────────────┘         │
+                            └─→ Back to Verification Agent
+                                (Loop continues)
+```
+
 ---
 
 ## End-to-End Workflow: 7-Step Pipeline
