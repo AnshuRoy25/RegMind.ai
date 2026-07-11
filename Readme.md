@@ -31,45 +31,6 @@ Instead of manual compliance sign-offs, our **Verification Agent** acts as an au
 
 ---
 
-## Architecture
-
-RegMind.ai operates as a **three-layer agentic pipeline**:
-
-### 1. **The Sorting Layer**
-- **Step 1**: Automated document ingestion & filtering (Applicability Gate)
-- **Step 2**: Master Circular ingestion with clause-by-clause parsing & obligation creation
-- **Step 3**: Semantic filtering and operational routing (separates actionable from non-actionable items)
-
-**Key Components**:
-- Applicability Gate Agent: Determines document relevance to organization profile
-- Document Classification Agent: Routes Master vs. Amendment circulars
-- Domain-Trained LLM: Specialized in SEBI regulatory patterns
-- Base Obligation Object: Standardized JSON container for each clause
-
-### 2. **The Action Generation Layer**
-- **Step 4**: Scheduling triage & action generation
-- Converts obligations into engineering tasks with clear technical specifications
-- Assigns urgency tiers: Urgent / Recurring / Conditional Tasks
-- Creates evidence checklists for task verification
-
-**Key Components**:
-- Scheduling Controller Gate: Maps legal timelines to urgency levels
-- Action Generation Engine: Acts as automated IT Project Manager
-- Task Object: Provides `technical_spec_summary` + `evidence_checklist`
-
-### 3. **The Continuous State Machine & Verification Layer**
-- **Step 5**: Amendment ingestion & intent analysis
-- **Step 6**: Dynamic modification routing (handles 4 task states: Open / Ongoing / Completed / Deprecated)
-- **Step 7**: Automated evidence verification loop
-
-**Key Components**:
-- Structural Variation Gate: Detects if amendment adds or modifies existing rules
-- Dynamic Modification State Machine: Routes updates based on live task status
-- Verification Agent (AI Auditor): Validates engineering artifacts against regulatory mandates
-- Interactive Chatbot Debugger: Guides engineers to fix compliance gaps instantly
-
----
-
 ## Tech Stack
 
 **Frontend**:
@@ -152,58 +113,68 @@ RegMind.ai operates as a **three-layer agentic pipeline**:
 
 ---
 
-## Getting Started (Conceptual)
+## How It Works (End-to-End)
 
-This is an **idea-stage submission**. Once development begins, the repository structure will include:
+### Flow Diagram
+
+```mermaid
+graph TD
+    A["Step 1: Upload SEBI Circular<br/>PDF ingestion & extraction"] 
+    B["Step 2: Sorting Layer<br/>Applicability Gate + Classification<br/>Master vs Amendment routing"]
+    C["Step 2a: Master Circular Flow<br/>Clause-by-clause parsing<br/>Create obligation objects"]
+    D["Step 5: Amendment Flow<br/>Intent analysis<br/>Compare vs baseline"]
+    E["Step 3: Semantic Filtering<br/>Actionable vs Non-Actionable split<br/>Prohibitive, Governance, Informational"]
+    F["Step 4: Action Generation<br/>Scheduling triage<br/>Create engineering tasks"]
+    G["Step 6: Developer Execution<br/>IT team implements<br/>Uploads evidence"]
+    H["Step 7: Verification<br/>Cross-check code vs law<br/>Pass or Fail"]
+    I["Task Complete<br/>Dashboard Updated"]
+    J["Fix & Resubmit<br/>Interactive Debugger"]
+    
+    A --> B
+    B -->|Master| C
+    B -->|Amendment| D
+    C --> E
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H -->|Pass| I
+    H -->|Fail| J
+    J --> G
+```
+
+### Step-by-Step Breakdown
+
+RegMind.ai processes regulatory documents through a **7-step closed-loop pipeline**:
+
+1. **Step 1: Upload & Ingestion** — SEBI circular uploaded as PDF; text extracted automatically.
+2. **Step 2: Sorting Layer** — Applicability Gate determines if document applies to your firm. Classification Agent routes to Master Circular or Amendment flow.
+3. **Step 3: Semantic Filtering** — Obligations split into actionable (engineering tasks) or non-actionable (reference library: prohibitive, governance, informational).
+4. **Step 4: Action Generation** — Scheduling triage assigns urgency (Urgent/Recurring/Conditional). LLM converts legal language into developer-friendly task specs with measurable evidence checklists.
+5. **Step 5: Amendment Flow** — When amendments arrive, the system evaluates the live status of the original task and intelligently routes the update (Open task → overwrite; Ongoing → alert developer; Completed → spawn delta task).
+6. **Step 6: Developer Execution** — IT team builds and uploads technical evidence (code, config files, logs, API payloads).
+7. **Step 7: Automated Verification** — Verification Agent cross-checks evidence against the regulatory blueprint. If correct, task auto-closes and compliance dashboard updates in real-time. If incorrect, Interactive Chatbot Debugger tells the engineer exactly what's missing.
+
+The system cycles continuously: new regulations trigger new tasks, amendments dynamically modify existing ones, and every change is locked into an immutable audit trail.
+
+---
+
+## Repository Structure (Planned)
+
+Once development begins:
 
 ```
 regmind-ai/
 ├── frontend/              # React compliance dashboard
 ├── backend/               # FastAPI compliance engine
 ├── agents/                # LangChain agent orchestration
-│   ├── sorting_layer/
-│   ├── action_generation/
-│   └── verification_layer/
-├── models/                # Domain-trained LLMs
-├── database/              # MongoDB schemas & Pinecone setup
-├── docs/                  # Architecture & API docs
+│   ├── sorting_layer/     # Applicability & classification agents
+│   ├── action_generation/ # Scheduling & task creation
+│   └── verification_layer/# Evidence validation & audit
+├── models/                # Domain-trained LLMs (Llama/Mistral)
+├── database/              # MongoDB schemas & Pinecone vector configs
+├── docs/                  # Architecture & API documentation
 └── README.md
-```
-
----
-
-## How It Works (End-to-End Flow)
-
-```
-SEBI Circular Uploaded
-         ↓
-  Applicability Gate (Agent 1)
-    ├─→ YES: Extract PDF → Text
-    └─→ NO: Skip
-         ↓
-  Classification Agent (Agent 2)
-    ├─→ Master Circular: Parse clause-by-clause
-    └─→ Amendment: Compare against baseline
-         ↓
-  Obligation Creation (Domain LLM)
-    └─→ Create standardized JSON objects
-         ↓
-  Semantic Routing Agent
-    ├─→ Actionable Items → Action Generation Layer
-    └─→ Non-Actionable → Reference Library
-         ↓
-  Action Generation Engine
-    └─→ Create engineering tasks with evidence checklists
-         ↓
-  Developer Executes Task
-    └─→ Uploads technical evidence
-         ↓
-  Verification Agent (AI Auditor)
-    ├─→ PASS: Auto-mark task complete
-    └─→ FAIL: Trigger Interactive Debugger
-         ↓
-  Secure Audit Trail Updated
-    └─→ Real-time compliance dashboard
 ```
 
 ---
