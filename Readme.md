@@ -1,494 +1,324 @@
 # RegMind.ai
 
-**Agentic Compliance: From Regulatory Text to Operational Action**
+## Agentic Compliance: From Regulatory Text to Operational Action
 
-RegMind.ai is an autonomous, multi-agent compliance automation platform that bridges the gap between regulatory text and operational code. We transform how financial institutions understand, implement, and continuously verify compliance with SEBI and RBI regulations.
+RegMind.ai is an AI-powered compliance platform built for financial institutions. It helps organizations convert complex SEBI and RBI regulations into clear engineering tasks, making compliance faster, more accurate, and much easier to manage.
 
----
-
-## The Problem
-
-Financial institutions face two critical compliance challenges:
-
-**The Challenge of Regulatory Translation**
-
-Every time SEBI releases a new circular, amendment, or master circular, financial institutions must quickly understand what has changed and implement those changes in their internal systems. However, these regulations are written in legal language, while the implementation is carried out by software and engineering teams. This creates a communication gap that relies heavily on manual interpretation by compliance and legal teams, resulting in slower implementation, inconsistent understanding, and a higher risk of compliance errors.
-
-**The Challenge of Continuous Compliance**
-
-Implementing a regulation is only the first step. Organizations must continuously ensure that their systems, processes, and operational evidence remain compliant as regulations evolve. Today, this process is largely manual, making it difficult to track obligations, maintain audit evidence, and identify compliance gaps before they become regulatory issues. Smaller firms face an even greater challenge due to limited compliance resources, making continuous monitoring and audit readiness both time-consuming and inefficient.
+Instead of relying on teams to manually interpret lengthy circulars, RegMind.ai reads regulatory documents, identifies what actually applies to your organization, generates implementation tasks, and continuously verifies whether those requirements have been met.
 
 ---
 
-## The Solution
+# The Problem
 
-Our solution bridges the gap between raw legal text and operational code by deploying an autonomous, multi-agent pipeline. Instead of relying on manual oversight, the system functions as a continuous state machine that ingests regulatory text, classifies it, translates it into precise developer specifications, and automatically verifies engineering work against the law.
+Financial institutions deal with two major compliance challenges.
 
-### The Agentic Architecture
+### Understanding Regulations
 
-RegMind.ai operates through **three primary agentic layers**:
+Whenever SEBI or RBI publishes a new circular, amendment, or master circular, companies have to quickly understand what has changed and update their internal systems. The problem is that regulations are written in legal language, while implementation is handled by software engineers.
 
-1. **The Sorting Layer** — Document ingestion, applicability filtering, and classification
-2. **The Action Generation Layer** — Task creation with scheduling and urgency triage
-3. **The Continuous State Machine & Verification Layer** — Amendment handling and automated evidence validation
+This creates a communication gap where compliance teams spend hours interpreting legal documents before developers can even begin their work. The process is slow, heavily manual, and different teams often interpret the same regulation differently, increasing the risk of compliance mistakes.
 
-```
-                    Closed-Loop Compliance System
-                              ↓
-                    Primary Agentic Layers
-                              ↓
-                    ┌─────────────────────┐
-                    │ Upload SEBI Circular │
-                    └──────────────┬──────┘
-                                   ↓
-                    ┌──────────────────────────┐
-                    │  The Sorting Layer       │
-                    │  (Steps 1-3)             │
-                    │  • Applicability Gate    │
-                    │  • Classification       │
-                    │  • Semantic Filtering   │
-                    └──────────────┬───────────┘
-                                   ↓
-                    ┌──────────────────────────┐
-                    │ Action Generation Layer  │
-                    │  (Step 4)                │
-                    │  • Scheduling Triage     │
-                    │  • Task Creation         │
-                    │  • Evidence Checklists   │
-                    └──────────────┬───────────┘
-                                   ↓
-                    ┌──────────────────────────────────┐
-                    │ Continuous State Machine &       │
-                    │ Verification Layer (Steps 5-7)   │
-                    │  • Amendment Handling            │
-                    │  • Dynamic Routing               │
-                    │  • Automated Verification        │
-                    └──────────────┬───────────────────┘
-                                   ↓
-                    ┌──────────────────────────┐
-                    │ Compliance Dashboard     │
-                    │ Real-Time Updates        │
-                    └──────────────────────────┘
-```
+### Staying Compliant Over Time
+
+Implementing a regulation once isn't enough. Regulations keep changing, which means organizations need to constantly monitor their systems and verify that they're still compliant.
+
+Today, this usually involves spreadsheets, manual audits, and collecting evidence from multiple teams. It's time-consuming, difficult to track, and especially challenging for smaller organizations that don't have dedicated compliance teams.
 
 ---
 
-## Detailed 7-Step Flow Diagram
+# The Solution
 
-```
-STEP 1: UPLOAD & INGESTION
-┌────────────────────────┐
-│  Upload SEBI Circular  │
-└───────────┬────────────┘
-            ↓
-      ┌─────────────┐
-      │  Agent 1    │  → Applicability Gate: Does it apply to you?
-      └─────┬───────┘
-            ├─→ YES: Extract PDF text
-            └─→ NO: Skip
-            ↓
-      ┌─────────────┐
-      │  Agent 2    │  → Document Classification: Master or Amendment?
-      └─────┬───────┘
-            ├─→ Master Circular Flow
-            └─→ Amendment Circular Flow
+RegMind.ai closes the gap between legal regulations and engineering execution through an AI-driven multi-agent workflow.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Instead of expecting people to manually translate legal documents into technical requirements, the platform automates the entire process. It reads regulatory documents, identifies applicable obligations, converts them into developer-friendly tasks, tracks amendments, and verifies implementation using AI.
 
-STEP 2: MASTER CIRCULAR INGESTION & STRUCTURAL TRIAGE
-┌──────────────────────────┐
-│ Master Circular Track    │
-└───────────┬──────────────┘
-            ↓
-   Parse Entire Document
-   Clause-by-Clause
-            ↓
-   ┌─────────────┐
-   │ Domain LLM  │  → Specialized SEBI Pattern Recognition
-   └──────┬──────┘
-          ↓
-  Create Base Obligation
-  Object (JSON)
-  • obligation_id
-  • section_reference
-  • raw_clause_text
-  • metadata
-          ↓
-   ┌─────────────┐
-   │  Agent 3    │  → Binary Classification: Actionable or Not?
-   └─────┬───────┘
-         ├─→ Actionable Item (Technical/Non-Technical)
-         └─→ Non-Actionable (Prohibitive/Governance/Informational)
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-STEP 3: SEMANTIC FILTERING & OPERATIONAL ROUTING
-            ↓
-      ACTIONABLE ITEMS         NON-ACTIONABLE ITEMS
-            ↓                           ↓
-   ┌────────────────┐         ┌────────────────────┐
-   │ Technical      │         │ Reference Library  │
-   │ Actions        │         │ (Immutable)        │
-   │ (IT/Systems)   │         ├─ Prohibitive      │
-   │ OR             │         ├─ Governance       │
-   │ Non-Technical  │         └─ Informational    │
-   │ (Business)     │
-   └────────┬───────┘
-            ↓
-   Routes to Developer
-   Pipeline (Step 4)
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-STEP 4: SCHEDULING TRIAGE & ACTION GENERATION
-┌──────────────────────────────┐
-│ Technical IT Action          │
-│ (From Step 3)                │
-└───────────┬──────────────────┘
-            ↓
-   ┌──────────────────┐
-   │ Scheduling Agent │  → Assign Urgency Tier
-   └─────────┬────────┘
-             ├─→ URGENT (Immediate deadline)
-             ├─→ RECURRING (Weekly/Monthly/Quarterly)
-             └─→ CONDITIONAL (Triggered by events)
-             ↓
-   ┌──────────────────────────┐
-   │ Action Generation Engine │  → Code-Friendly Translation
-   │ (LLM as IT Project Mgr)  │
-   └─────────┬────────────────┘
-             ↓
-    Create Engineering Task
-    • technical_spec_summary
-    • evidence_checklist
-    • measurable criteria
-             ↓
-   ┌─────────────────┐
-   │ Task Ready for  │  → Ready for Developer Assignment
-   │ Developer       │
-   └─────────────────┘
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-STEP 5: AMENDMENT INGESTION & INTENT ANALYSIS
-┌──────────────────────────┐
-│ Amendment Circular Track │
-│ (From Step 1)            │
-└───────────┬──────────────┘
-            ↓
-   ┌─────────────┐
-   │ Domain LLM  │  → Parse Amendment Clauses
-   └──────┬──────┘
-          ↓
-   ┌──────────────────────┐
-   │ Structural Variation │  → Evaluate Impact on Baseline
-   │ Gate (Agent)         │
-   └──────────┬───────────┘
-              ├─→ ADDING A NEW CLAUSE
-              │   (Simple additive path)
-              └─→ MODIFYING AN EXISTING CLAUSE
-                  (Complex state-altering path)
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-STEP 6: AMENDMENT STATE MACHINE & DYNAMIC ROUTING
-┌───────────────────────────────────────────┐
-│ For EACH Modified or New Clause:          │
-│ Check Live Status of Original Task        │
-└─────────────────┬───────────────────────┘
-                  ↓
-        ┌─────────────────────┐
-        │ Action vs Non-Action │
-        │ Check (Agent)        │
-        └────────┬─────────────┘
-                 ↓
-      ACTIVE TECHNICAL TASK
-                 ↓
-    ┌────────────────────────────────┐
-    │ Dynamic Modification State      │
-    │ Machine: Where is the task NOW? │
-    └────────────┬───────────────────┘
-                 │
-    ┌────────────┼────────────┬──────────────┬─────────────┐
-    ↓            ↓            ↓              ↓             ↓
-  OPEN       ONGOING       COMPLETED    REMOVE PREV
-  (Unassigned) (In Progress) (Deployed)   REQUIREMENT
-    │            │            │              │
-    ↓            ↓            ↓              ↓
-OVERWRITE    HALT & ALERT  CREATE DELTA  DEPRECATE
-SPEC        ENGINEER      TASK          TICKET
-    │            │            │              │
-    └────────────┴────────────┴──────────────┘
-                 ↓
-      Task Updated/Routed
-      to Developer
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-STEP 7: AUTOMATED EVIDENCE VERIFICATION LOOP
-┌────────────────────────────────┐
-│ IT Department Executes Task    │
-│ & Uploads Evidence             │
-│ (config, code, logs, payloads) │
-└───────────────┬────────────────┘
-                ↓
-        ┌───────────────────┐
-        │ Verification      │
-        │ Agent (AI Auditor)│  → Cross-check Evidence vs Law
-        └────────┬──────────┘
-                 │
-        ┌────────┴────────┐
-        ↓                 ↓
-    CORRECT          INCORRECT
-    (100% match)      (Incomplete/Errors)
-        │                 │
-        ↓                 ↓
-   AUTO-MARK         TRIGGER
-   COMPLETED      INTERACTIVE
-        │         CHATBOT DEBUGGER
-        │              │
-        ↓              ↓
-   DASHBOARD      Engineer Gets
-   UPDATE          Exact Feedback
-   (Real-time)      on What's Missing
-        │              │
-        ↓              ↓
-   ┌──────────────┐  ┌──────────┐
-   │ COMPLIANCE   │  │ Developer│
-   │ VERIFIED     │  │ Fixes    │
-   │ AUDIT TRAIL  │  │ Re-submits
-   │ LOGGED       │  └──────┬───┘
-   └──────────────┘         │
-                            └─→ Back to Verification Agent
-                                (Loop continues)
-```
+The goal isn't to replace compliance teams—it's to remove repetitive manual work so they can focus on higher-value decisions.
 
 ---
 
-## End-to-End Workflow: 7-Step Pipeline
+# Agentic Architecture
 
-### **Step 1: Upload & Automated Document Ingestion**
+The platform is organized into three major layers, each responsible for a different stage of the compliance lifecycle.
 
-When a SEBI circular is uploaded, the platform immediately begins processing:
+### 1. Sorting Layer
 
-- **The Applicability Gate (Agent 1)**: Analyzes the circular against your firm's profile. If the document doesn't apply to your specific market entity, it's skipped entirely to prevent processing overhead.
-- **Text Extraction**: The pipeline extracts raw text from the PDF container for downstream analysis.
-- **The Document Classification Gate (Agent 2)**: Routes the circular into one of two tracks—Master Circular (to build baseline rulebook) or Amendment Circular (to update existing obligations).
+The first layer receives regulatory documents, checks whether they actually apply to the organization, extracts their content, and classifies them before any detailed processing begins.
 
----
+### 2. Action Generation Layer
 
-### **Step 2: Master Circular Ingestion & Structural Triage**
+Once actionable obligations have been identified, this layer converts them into structured engineering tasks. It prioritizes work, assigns urgency, and prepares clear implementation requirements for developers.
 
-Once routed to the Master Circular track, the pipeline initializes deep clause-by-clause breakdown:
+### 3. Continuous Verification Layer
 
-- **Clause-by-Clause Parsing**: The system extracts unstructured text and systematically tokenizes the entire document into individual atomic clauses based on numerical and legal paragraph structures.
-- **The Domain-Trained Core**: Each clause is passed through an LLM highly specialized in SEBI regulatory patterns. The model acts as an analytical engine that maps the contextual intent of each regulation.
-- **The Base Obligation Object**: For every clause, the system dynamically constructs a standardized JSON data container. This object securely locks down permanent metadata including unique obligation ID, section references, timestamps, and original raw legal text.
-- **The Ingestion Agent Routing**: This structured baseline object is handed to the next downstream agent for binary classification—is this clause actionable or purely informational?
+The final layer continuously monitors regulatory updates and validates engineering work against the original legal requirements. Whenever regulations change, the system automatically updates existing tasks instead of forcing teams to start from scratch.
 
 ---
 
-### **Step 3: Semantic Filtering and Operational Routing**
+# End-to-End Workflow
 
-At this stage, the pipeline splits into two distinct routing streams:
+## Step 1 — Upload & Document Ingestion
 
-**The Actionable Tracking Track:**
-When a clause is flagged as an active obligation, a specialized categorization agent separates:
-- **Technical Actions (IT/Systems)** — Engineering requirements that route directly to the developer pipeline
-- **Non-Technical Actions** — Business workflows or compliance paperwork handled separately
+Everything begins when a regulatory document is uploaded to the platform.
 
-**The Non-Actionable Reference Track:**
-Clauses that don't require explicit operational task execution are organized into an immutable legal lookup library:
-- **Prohibitive**: Strict restrictions and boundary definitions (what the system must avoid)
-- **Governance**: Structural and procedural guidelines (long-term planning framework)
-- **Informational**: Pure reference material and definitions (audit defense documentation)
+The first AI agent checks whether the circular actually applies to the organization. If it doesn't, the document is ignored, saving both time and processing resources.
+
+For applicable documents, the system extracts the text from the PDF and classifies it as either a **Master Circular** or an **Amendment Circular**. This decision determines which workflow the document will follow.
 
 ---
 
-### **Step 4: Scheduling Triage and Action Generation**
+## Step 2 — Master Circular Processing
 
-Once a clause is isolated as a Technical IT Action, the pipeline shifts from compliance routing to engineering execution:
+If the document is identified as a Master Circular, the platform begins building the organization's baseline compliance rulebook.
 
-- **The Scheduling Controller Gate**: An agent assesses legal timelines and trigger conditions, assigning each obligation a specific urgency tier:
-  - **Urgent**: Core requirements with mandatory deadlines demanding immediate development
-  - **Recurring**: Periodic operations (e.g., log rotations, quarterly validations) configured into recurring schedules
-  - **Conditional Tasks**: Latent requirements hidden until an active platform event triggers them
+The document is broken down into individual clauses so that every requirement can be analyzed independently.
 
-- **The Action Generation Engine**: Acts as an automated IT Project Manager and System Architect. It translates legal intent into a deterministic, code-friendly framework.
+Each clause is then passed through a domain-specific language model trained on SEBI regulations. Instead of simply summarizing the text, the model understands the intent behind every clause and extracts meaningful compliance obligations.
 
-- **The Engineering Task Creation**: The pipeline constructs an operational Task Object with a clear `technical_spec_summary` alongside a pre-defined, measurable `evidence_checklist` (e.g., configuration file updates, simulation logs) required for compliance verification.
+For every obligation, RegMind.ai creates a structured JSON object containing details such as the clause ID, section reference, timestamps, and the original legal text.
 
----
-
-### **Step 5: Amendment Ingestion & Intent Analysis**
-
-When a document takes the Amendment Circular path, the system switches from baseline construction to dynamic update:
-
-- **Targeted Clause Analysis**: Amendment text is fed into the domain-trained LLM layer, which breaks down specific update provisions into individual clauses.
-
-- **The Structural Variation Gate**: A specialized routing agent evaluates each clause's impact on the existing baseline, executing a structural split:
-  - **Adding a New Clause**: Simple additive path where the amendment introduces a brand-new requirement with no interference to old rules
-  - **Modifying an Existing Clause**: Complex state-altering path where the amendment overrides, replaces, or alters a baseline rule already stored in the engine
+These structured objects become the foundation for all future compliance tracking.
 
 ---
 
-### **Step 6: Amendment State Machine & Dynamic Modification Routing**
+## Step 3 — Identifying Actionable Requirements
 
-This is where our system operates as a true state machine. Instead of simply dumping an amendment onto a developer's dashboard, the amendment agents evaluate the **live status** of the original baseline task and dynamically route the update based on its operational state:
+Once every clause has been processed, the platform determines whether it requires action or is simply informational.
 
-- **The Action vs. Non-Action Check**: Agents first run a triage scan to split simple non-actionable administrative edits from active technical engineering actions.
+Actionable clauses are divided into two categories.
 
-- **The Dynamic Modification State Machine**: When an active engineering requirement is modified, the agent maps it against the live task in your developer environment, resolving across four distinct scenarios:
+The first includes technical requirements that need engineering work, such as system changes, configurations, or software updates.
 
-  - **Previous Task is Open**: If the original task sits unassigned in the backlog, the agent cleanly intercepts and overwrites the technical specification payload
-  - **Previous Task is Ongoing**: If a developer is actively coding, the system halts the task, alerts the engineer via dashboard, and delivers newly modified requirements to their active workspace
-  - **Previous Task is Completed**: If code is already in production, the agent treats this as a new change request, spawning an isolated "delta" task to update production without breaking the baseline
-  - **Remove Previous Technical Requirement**: If the amendment cancels a prior rule, the agent automatically deprecates the ticket and archives it to prevent redundant development work
+The second contains business or operational tasks that belong to compliance or management teams rather than developers.
 
----
-
-### **Step 7: Automated Evidence Verification Loop**
-
-Once a technical task is assigned, the IT Department executes development work. Instead of manual compliance sign-off, our Verification Agent acts as an automated auditor:
-
-**The Execution & Validation Pipeline:**
-
-- **IT Execution & Submission**: The IT Department completes the task based on generated specifications and uploads required technical evidence (config files, code snippets, logs, API payloads) to the platform.
-
-- **The Verification Agent (AI Auditor)**: A specialized LLM agent trained to evaluate engineering artifacts against original regulatory mandates. It instantly processes uploaded evidence to verify compliance.
-
-**Branch A: The Success Path (Correct)**
-If evidence meets 100% of criteria, the Verification Agent automatically marks the task as completed and updates the organization's compliance dashboard in real time.
-
-**Branch B: The Correction Path (Incorrect/Incomplete)**
-If evidence falls short or contains errors, the system doesn't just reject it. It triggers an **Interactive Chatbot Debugger** that acts as an AI pair-programmer, telling the engineer exactly what is missing or wrong so they can fix it instantly.
+Clauses that don't require direct action are still valuable, so they're stored as searchable reference material. These include governance guidelines, regulatory definitions, and prohibitive rules that help during audits or future regulatory analysis.
 
 ---
 
-## Tech Stack
+## Step 4 — Generating Engineering Tasks
 
-**Frontend:**
-- React with responsive UI for compliance dashboards
+Once a clause is identified as a technical requirement, the platform shifts from compliance analysis to execution planning.
 
-**Backend:**
-- FastAPI (Python) for high-performance API endpoints
+An AI scheduling agent first looks at the regulatory timeline and decides how urgent the task is. Based on the requirement, each task is classified as one of the following:
 
-**AI & Agents Framework:**
-- **Orchestration**: LangChain for multi-agent coordination
-- **Models**: Llama 3 / Mistral (open-source, privacy-first)
-- **Runtime**: Ollama / vLLM for private, local execution
-- **Infrastructure**: Private AWS GPU servers (fully isolated corporate cloud)
+- **Urgent** — Requirements that have strict regulatory deadlines and need immediate implementation.
+- **Recurring** — Activities that must be performed on a regular basis, such as quarterly validations or periodic reporting.
+- **Conditional** — Tasks that only become active when a specific business event or system trigger occurs.
 
-**Data & Search:**
-- MongoDB for obligation and task storage
-- Pinecone for vector-based semantic search
+After prioritization, the Action Generation Engine translates the legal requirement into a clear technical specification.
 
-**Document Processing:**
-- PyMuPDF for PDF parsing & text extraction
-- Tesseract OCR for scanned document processing
+Instead of handing developers a legal document, the system generates a structured engineering task that explains exactly what needs to be built, modified, or verified. It also creates an evidence checklist describing what developers must submit later to prove that the requirement has been implemented correctly.
 
 ---
 
-## Security & Privacy
+## Step 5 — Processing Regulatory Amendments
 
-**Zero-Retention Processing**
-Regulatory documents, source code, configs, and logs are analyzed only during compliance checks. They're never permanently stored or used to train AI models.
+Amendment circulars follow a slightly different workflow.
 
-**Automatic Data Masking**
-Passwords, API keys, customer details, and internal IPs are masked before AI processing. Only compliance-related content is analyzed.
+Instead of building a new compliance baseline, the platform compares every amendment against the organization's existing obligations.
 
-**Secure Audit Trail**
-Every compliance activity is securely logged with timestamps—from document ingestion through task generation, evidence verification, and final approval. This creates a complete audit trail that helps organizations demonstrate compliance while protecting their internal systems and technical assets.
+The document is first broken down into individual clauses, just like a Master Circular. Each clause is then analyzed to understand whether it introduces a completely new requirement or changes an existing one.
 
----
+There are generally two possibilities:
 
-## Business Model (Revenue Streams)
+- **New Requirement** — A brand-new obligation is added to the compliance database.
+- **Modified Requirement** — An existing obligation is updated, replaced, or partially changed.
 
-1. **B2B SaaS Subscription**: Monthly/annual recurring fees based on users, firm size, and document volume
-2. **On-Premise / Private Cloud Deployment**: One-time implementation fee for bank-hosted installations
-3. **Usage-Based Pricing**: Pay per regulatory document processed, AI request, or compliance task
-4. **Enterprise Support & Maintenance**: 24/7 support, security patches, regulatory updates
-5. **Custom Integrations**: Paid integration with Jira, ServiceNow, ERP systems
+This allows the platform to understand exactly how regulations evolve instead of treating every circular as a completely new document.
 
 ---
 
-## Key Differentiators
+## Step 6 — Intelligent Amendment Handling
 
-- **Agentic Autonomy**: No manual compliance sign-offs—agents verify work automatically
-- **State Machine Intelligence**: Understands live task status and routes amendments intelligently
-- **Privacy-First**: All processing happens in customer's private cloud; zero data retention
-- **Domain-Specialized**: LLM trained specifically on SEBI/RBI regulatory patterns
-- **Real-Time Audit Trail**: Immutable record for regulatory demonstrations
-- **Developer-Friendly**: Converts legal text to clear technical specifications with evidence checklists
+This is one of the core features of RegMind.ai.
+
+Rather than simply notifying developers that an amendment exists, the platform checks the current status of the related engineering task and decides what should happen next.
+
+Before making any changes, the system separates administrative updates from technical engineering requirements. Only actionable changes move into the developer workflow.
+
+If a technical requirement has changed, the platform evaluates the state of the existing task.
+
+### If the task hasn't been started
+
+The original task is updated with the latest technical specification so developers always work on the newest version.
+
+### If development is already in progress
+
+The assigned developer is notified immediately, the task is updated, and the revised implementation details are made available without creating duplicate work.
+
+### If the task has already been completed
+
+Instead of modifying production records, the platform creates a separate change request containing only the differences introduced by the amendment.
+
+This allows developers to update production systems without losing the original implementation history.
+
+### If the regulation removes a previous requirement
+
+The existing engineering task is automatically deprecated and archived, preventing unnecessary work on requirements that are no longer valid.
+
+This state-aware approach helps engineering teams stay synchronized with changing regulations while maintaining a complete audit trail.
 
 ---
 
-## Team
+## Step 7 — Automated Compliance Verification
 
-**Team Square** — SEBI Securities Market TechSprint 2026
+Once developers finish implementing a task, the verification process begins.
 
-- **Anshu Roy** (Team Leader) — Engineering Physics, NIT Hamirpur | Full-Stack SDE
-- **Aayush Dubey** (Co-Founder) — Domain Expertise
+Developers upload the required evidence to the platform. This can include configuration files, logs, API responses, screenshots, code snippets, or any other technical artifacts requested during task creation.
+
+The Verification Agent then compares the submitted evidence against the original regulatory requirement.
+
+### Successful Verification
+
+If everything satisfies the compliance criteria, the task is automatically marked as complete and the compliance dashboard is updated in real time.
+
+No manual approval is required.
+
+### Failed Verification
+
+If the evidence is incomplete or doesn't fully satisfy the regulation, the platform doesn't simply reject it.
+
+Instead, an AI-powered assistant explains exactly what is missing, highlights the issue, and guides the developer toward a successful submission.
+
+This creates a much faster feedback loop than traditional compliance reviews.
 
 ---
 
-## Current Status
+# Tech Stack
 
-**Idea Submission Round** — Conceptual architecture and business model validated.
+## Frontend
 
-**Roadmap**:
-- [ ] Phase 1: Proof-of-concept with real SEBI circulars (Q3 2026)
-- [ ] Phase 2: Beta deployment with pilot financial institution (Q4 2026)
-- [ ] Phase 3: Enterprise SaaS launch (Q1 2027)
-- [ ] Phase 4: RBI regulation support & multi-regulator expansion (2027)
+- React
+- Responsive compliance dashboard
+
+## Backend
+
+- FastAPI (Python)
+
+## AI & Agent Framework
+
+- LangChain for multi-agent orchestration
+- Llama 3 and Mistral as the primary language models
+- Ollama and vLLM for secure local inference
+- Private AWS GPU infrastructure for enterprise deployments
+
+## Database & Search
+
+- MongoDB for storing obligations and engineering tasks
+- Pinecone for semantic search and retrieval
+
+## Document Processing
+
+- PyMuPDF for PDF parsing
+- Tesseract OCR for scanned regulatory documents
 
 ---
 
-## Repository Structure (Planned)
+# Security & Privacy
 
-Once development begins:
+## Zero Data Retention
 
-```
+Documents, source code, configuration files, and uploaded evidence are processed only for compliance verification.
+
+No customer data is stored permanently or used to train AI models.
+
+## Automatic Data Masking
+
+Sensitive information such as passwords, API keys, customer information, and internal IP addresses is automatically masked before being processed by the AI pipeline.
+
+Only the information required for compliance verification is analyzed.
+
+## Complete Audit Trail
+
+Every action performed inside the platform is securely recorded.
+
+From document upload to task creation, evidence verification, and final approval, every event is logged with timestamps, making regulatory audits much easier while preserving transparency.
+
+---
+
+# Business Model
+
+### B2B SaaS Subscription
+
+Organizations pay a recurring monthly or annual subscription based on the number of users, compliance documents, and overall platform usage.
+
+### Private Cloud / On-Premise Deployment
+
+Large financial institutions can deploy RegMind.ai inside their own infrastructure through a one-time implementation and setup package.
+
+### Usage-Based Pricing
+
+Customers can also pay based on the number of regulatory documents processed, AI requests made, or compliance tasks generated.
+
+### Enterprise Support
+
+Premium support plans include priority assistance, security updates, regulatory model updates, and dedicated technical support.
+
+### Custom Integrations
+
+Paid integrations are available for enterprise platforms such as Jira, ServiceNow, and ERP systems.
+
+---
+
+# What Makes RegMind.ai Different?
+
+- Fully agentic workflow with minimal manual intervention.
+- Intelligent amendment handling that updates live engineering tasks instead of creating duplicate work.
+- Privacy-first architecture designed for deployment inside a customer's private cloud.
+- AI models specialized for SEBI and RBI regulations instead of general-purpose language understanding.
+- Automatic evidence verification that reduces manual compliance reviews.
+- Clear developer-friendly technical specifications generated directly from legal documents.
+- End-to-end audit trail for regulatory reporting and compliance.
+
+---
+
+# Team
+
+**Team Square**  
+SEBI Securities Market TechSprint 2026
+
+- Anshu Roy
+- Aayush Dubey
+
+---
+
+# Current Status
+
+**Idea Submission Round**
+
+The current repository represents the proposed architecture and workflow for RegMind.ai. 
+
+---
+
+# Planned Repository Structure
+
+```text
 regmind-ai/
-├── frontend/              # React compliance dashboard
-├── backend/               # FastAPI compliance engine
-├── agents/                # LangChain agent orchestration
-│   ├── sorting_layer/     # Applicability & classification agents
-│   ├── action_generation/ # Scheduling & task creation
-│   └── verification_layer/# Evidence validation & audit
-├── models/                # Domain-trained LLMs (Llama/Mistral)
-├── database/              # MongoDB schemas & Pinecone vector configs
-├── docs/                  # Architecture & API documentation
+├── frontend/
+├── backend/
+├── agents/
+│   ├── sorting_layer/
+│   ├── action_generation/
+│   └── verification_layer/
+├── models/
+├── database/
+├── docs/
 └── README.md
 ```
 
 ---
 
-## Contact & Contributions
+# Contact
 
-**Team Lead**: Anshu Roy  
-**Email**: 24bph025@nith.ac.in  
-**Phone**: +91 7738385936  
+**Anshu Roy**  
+24bph025@nith.ac.in
 
-**Collaborator**: Aayush Dubey  
-**Email**: dubeyaayushop@gmail.com
+**Aayush Dubey**  
+dubeyaayushop@gmail.com
 
-For inquiries, partnership opportunities, or to discuss regulatory use cases, reach out to the team above.
-
----
-
-## License
-
-This project is submitted to the SEBI Securities Market TechSprint 2026 competition. Licensing details to be finalized upon advancement.
+For collaborations, partnerships, or discussions around regulatory technology, feel free to reach out.
 
 ---
 
-## Acknowledgments
+# License
 
-- SEBI TechSprint 2026 for the opportunity to innovate in regulatory technology
-- NIT Hamirpur Engineering Physics Department for foundational knowledge
-- Open-source community (LangChain, Ollama, Llama, Mistral, FastAPI)
-
----
-
-**RegMind.ai: Making Compliance Code, Not Paperwork.**
+This project has been submitted as part of the **SEBI Securities Market TechSprint 2026**.
